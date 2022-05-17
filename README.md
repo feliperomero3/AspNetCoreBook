@@ -17,10 +17,14 @@ NOTE: I'm using Razor Pages instead of MVC like in the book.
 ## Getting started
 
 1. Clone the project.
-1. Open the solution file `SportsStore.sln`.
+1. Open the solution file `SportsStore\SportsStore.sln`.
 1. Build the solution.
 1. Press F5 to start the application.
-1. Open your browser and go to <https://localhost:5000>.
+1. Open your web browser and go to <https://localhost:5000>.
+
+## Screen capture
+
+![Home page](./SportsStore_.png)
 
 ## License
 
