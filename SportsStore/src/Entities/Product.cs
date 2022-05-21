@@ -4,12 +4,12 @@
     {
         public long ProductId { get; }
 
-        public string Name { get; } = String.Empty;
+        public string Name { get; } = string.Empty;
 
-        public string Description { get; } = String.Empty;
+        public string Description { get; } = string.Empty;
 
         public decimal Price { get; }
 
-        public string Category { get; } = String.Empty;
+        public string Category { get; } = string.Empty;
     }
 }
