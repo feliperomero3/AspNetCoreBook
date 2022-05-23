@@ -1,20 +1,28 @@
 using Microsoft.EntityFrameworkCore;
 using SportsStore.Data;
 
-var builder = WebApplication.CreateBuilder(args);
+namespace SportsStore;
 
-builder.Services.AddRazorPages();
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+        builder.Services.AddRazorPages();
 
-builder.Services.AddDbContext<StoreDbContext>(options => options.UseSqlServer(connectionString));
+        var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-var app = builder.Build();
+        builder.Services.AddDbContext<StoreDbContext>(options => options.UseSqlServer(connectionString));
 
-app.UseHttpsRedirection();
+        var app = builder.Build();
 
-app.UseStaticFiles();
+        app.UseHttpsRedirection();
 
-app.MapRazorPages();
+        app.UseStaticFiles();
 
-app.Run();
+        app.MapRazorPages();
+
+        app.Run();
+    }
+}
