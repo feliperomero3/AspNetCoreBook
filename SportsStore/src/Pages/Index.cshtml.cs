@@ -3,22 +3,21 @@ using Microsoft.EntityFrameworkCore;
 using SportsStore.Data;
 using SportsStore.Entities;
 
-namespace SportsStore.Pages
+namespace SportsStore.Pages;
+
+public class IndexModel : PageModel
 {
-    public class IndexModel : PageModel
+    private readonly StoreDbContext _dbContext;
+
+    public IndexModel(StoreDbContext dbContext)
     {
-        private readonly StoreDbContext _dbContext;
+        _dbContext = dbContext;
+    }
 
-        public IndexModel(StoreDbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
+    public IEnumerable<Product> Products { get; private set; } = Enumerable.Empty<Product>();
 
-        public IEnumerable<Product> Products { get; private set; } = Enumerable.Empty<Product>();
-
-        public void OnGet()
-        {
-            Products = _dbContext.Products.AsNoTracking().ToArray();
-        }
+    public void OnGet()
+    {
+        Products = _dbContext.Products.AsNoTracking().ToArray();
     }
 }

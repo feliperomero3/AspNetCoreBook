@@ -1,15 +1,14 @@
-﻿namespace SportsStore.Entities
+﻿namespace SportsStore.Entities;
+
+public class Product
 {
-    public class Product
-    {
-        public long ProductId { get; }
+    public long ProductId { get; }
 
-        public string Name { get; } = string.Empty;
+    public string Name { get; } = string.Empty;
 
-        public string Description { get; } = string.Empty;
+    public string Description { get; } = string.Empty;
 
-        public decimal Price { get; }
+    public decimal Price { get; }
 
-        public string Category { get; } = string.Empty;
-    }
+    public string Category { get; } = string.Empty;
 }
