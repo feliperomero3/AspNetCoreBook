@@ -17,6 +17,7 @@ NOTE: I'm using Razor Pages instead of MVC like in the book.
 ## Getting started
 
 1. Clone the project.
+1. Run the database scripts located in `SportsStore\data`
 1. Open the solution file `SportsStore\SportsStore.sln`.
 1. Build the solution.
 1. Press F5 to start the application.
