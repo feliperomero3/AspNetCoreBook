@@ -9,9 +9,17 @@
 
 @foreach (var p in Model.Products)
 {
-	<div>
-		<h3>@p.Name</h3>
-		@p.Description
-		<h4>@p.Price.ToString("c")</h4>
+	<div class="card border-primary m-1 p-1">
+		<div class="bg-opacity-50 p-1">
+			<h3>
+				@p.Name
+				<span class="badge rounded-pill bg-primary text-white float-end">
+					<small>@p.Price.ToString("c")</small>
+				</span>
+			</h3>
+		</div>
+		<div class="p-1">
+			@p.Description
+		</div>
 	</div>
 }

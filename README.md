@@ -26,7 +26,7 @@ NOTE: I'm using Razor Pages instead of MVC like in the book.
 
 ## Screen capture
 
-![Home page](./SportsStore_.png)
+![Home page](./SportsStore.png)
 
 ## License
 

@@ -4,10 +4,19 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title - SportsStore</title>
+	<link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" media="all" />
 </head>
 <body>
-    <div>
-        @RenderBody()
+    <div class="bg-dark text-white p-2">
+		<span class="navbar-brand mx-2">SPORTS STORE</span>
+    </div>
+	<div class="row m-1 p-1">
+		<div id="categories" class="col-3">
+			<p>Put something useful here later...</p>
+        </div>
+		<div class="col-9">
+            @RenderBody()
+        </div>
     </div>
 </body>
 </html>
