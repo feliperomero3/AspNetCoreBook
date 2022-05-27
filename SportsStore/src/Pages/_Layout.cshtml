@@ -2,21 +2,26 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title - SportsStore</title>
+	<meta name="viewport" content="width=device-width" />
+	<title>@ViewBag.Title - SportsStore</title>
 	<link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" media="all" />
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<meta name="apple-mobile-web-app-title" content="SportsStore">
+	<meta name="application-name" content="SportsStore">
 </head>
 <body>
-    <div class="bg-dark text-white p-2">
+	<div class="bg-dark text-white p-2">
 		<span class="navbar-brand mx-2">SPORTS STORE</span>
-    </div>
+	</div>
 	<div class="row m-1 p-1">
 		<div id="categories" class="col-3">
 			<p>Put something useful here later...</p>
-        </div>
+		</div>
 		<div class="col-9">
-            @RenderBody()
-        </div>
-    </div>
+			@RenderBody()
+		</div>
+	</div>
 </body>
 </html>
