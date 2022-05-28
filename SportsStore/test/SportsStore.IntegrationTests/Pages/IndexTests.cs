@@ -1,13 +1,13 @@
 ﻿using System.Net;
-using Microsoft.AspNetCore.Mvc.Testing;
+using SportsStore.IntegrationTests.Helpers;
 
 namespace SportsStore.IntegrationTests.Pages;
 
-public class IndexTests : IClassFixture<WebApplicationFactory<Program>>
+public class IndexTests : IClassFixture<CustomWebApplicationFactory<Program>>
 {
-    private readonly WebApplicationFactory<Program> _factory;
+    private readonly CustomWebApplicationFactory<Program> _factory;
 
-    public IndexTests(WebApplicationFactory<Program> factory)
+    public IndexTests(CustomWebApplicationFactory<Program> factory)
     {
         _factory = factory;
         _factory.ClientOptions.AllowAutoRedirect = false;
@@ -22,5 +22,19 @@ public class IndexTests : IClassFixture<WebApplicationFactory<Program>>
         var response = await client.GetAsync(string.Empty);
 
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+    }
+
+    [Fact]
+    public async Task Get_Index_Page_Filtered_Products_By_Category()
+    {
+        var client = _factory.CreateClient();
+
+        var response = await client.GetAsync("?category=Football");
+
+        var content = await HtmlDocumentHelper.GetDocumentAsync(response);
+
+        var products = content.QuerySelectorAll("#products .card");
+
+        Assert.Equal(3, products?.Length);
     }
 }

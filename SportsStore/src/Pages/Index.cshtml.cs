@@ -16,8 +16,13 @@ public class IndexModel : PageModel
 
     public IEnumerable<Product> Products { get; private set; } = Enumerable.Empty<Product>();
 
-    public void OnGet()
+    public string CurrentCategory { get; set; } = string.Empty;
+
+    public void OnGet(string category)
     {
-        Products = _dbContext.Products.AsNoTracking().ToArray();
+        Products = _dbContext.Products
+            .Where(p => string.IsNullOrEmpty(category) || string.Equals(p.Category.ToLower(), category.ToLower()))
+            .AsNoTracking()
+            .ToArray();
     }
 }
