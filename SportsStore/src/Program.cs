@@ -5,24 +5,28 @@ namespace SportsStore;
 
 public class Program
 {
-    public static void Main(string[] args)
-    {
-        var builder = WebApplication.CreateBuilder(args);
+	public static void Main(string[] args)
+	{
+		var builder = WebApplication.CreateBuilder(args);
 
-        builder.Services.AddRazorPages();
+		builder.Services.AddRazorPages();
+		builder.Services.AddSession();
+		builder.Services.AddDistributedMemoryCache();
 
-        var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+		var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-        builder.Services.AddDbContext<StoreDbContext>(options => options.UseSqlServer(connectionString));
+		builder.Services.AddDbContext<StoreDbContext>(options => options.UseSqlServer(connectionString));
 
-        var app = builder.Build();
+		var app = builder.Build();
 
-        app.UseHttpsRedirection();
+		app.UseHttpsRedirection();
 
-        app.UseStaticFiles();
+		app.UseStaticFiles();
 
-        app.MapRazorPages();
+		app.UseSession();
 
-        app.Run();
-    }
+		app.MapRazorPages();
+
+		app.Run();
+	}
 }
