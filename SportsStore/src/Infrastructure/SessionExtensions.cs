@@ -21,7 +21,9 @@ namespace SportsStore.Infrastructure
                 throw new ArgumentNullException(nameof(value));
             }
 
-            session.SetString(key, JsonSerializer.Serialize(value));
+            var serializedValue = JsonSerializer.Serialize(value);
+
+            session.SetString(key, serializedValue);
         }
 
         public static T? GetJson<T>(this ISession session, string key)
@@ -38,9 +40,14 @@ namespace SportsStore.Infrastructure
 
             var sessionData = session.GetString(key);
 
-            return sessionData is null
-                ? default
-                : JsonSerializer.Deserialize<T>(sessionData);
+            if (sessionData is not null)
+            {
+                var data = JsonSerializer.Deserialize<T>(sessionData)!;
+
+                return data;
+            }
+
+            return default;
         }
     }
 }

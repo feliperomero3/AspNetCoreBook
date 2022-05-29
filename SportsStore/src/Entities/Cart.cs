@@ -4,14 +4,9 @@ public class Cart
 {
     public long CartId { get; set; }
 
-    public List<CartLine> Lines { get; }
+    public List<CartLine> Lines { get; set; } = new List<CartLine>();
 
     public decimal TotalValue => Lines.Sum(l => l.Product.Price * l.Quantity);
-
-    public Cart()
-    {
-        Lines = new List<CartLine>();
-    }
 
     public void AddItem(Product product, int quantity)
     {

@@ -6,7 +6,9 @@ public class CartLine
 
     public int Quantity { get; set; }
 
-    public Product Product { get; }
+    public Product Product { get; set; }
+
+    protected CartLine() { }
 
     public CartLine(Product product, int quantity)
     {

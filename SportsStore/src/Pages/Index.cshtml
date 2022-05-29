@@ -20,7 +20,7 @@
 		</div>
 		<form id="@p.ProductId" asp-page="Cart" method="post">
 			<input type="hidden" name="returnUrl" value="@Request.PathAndQuery()" />
-			<input type="hidden" value="@p.ProductId" />
+			<input type="hidden" name="productId" value="@p.ProductId" />
 			<span class="p-1">
 				@p.Description
 				<button class="btn btn-success btn-sm float-end" type="submit">
