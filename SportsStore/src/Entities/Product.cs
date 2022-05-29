@@ -4,13 +4,13 @@ public class Product
 {
     public long ProductId { get; }
 
-    public string Name { get; } = string.Empty;
+    public string Name { get; }
 
-    public string Description { get; } = string.Empty;
+    public string Description { get; }
 
     public decimal Price { get; }
 
-    public string Category { get; } = string.Empty;
+    public string Category { get; }
 
     public Product(string name, string description, decimal price, string category)
     {
@@ -18,5 +18,10 @@ public class Product
         Description = description;
         Price = price;
         Category = category;
+    }
+
+    public Product(long productId, string name, string description, decimal price, string category) : this(name, description, price, category)
+    {
+        ProductId = productId;
     }
 }
