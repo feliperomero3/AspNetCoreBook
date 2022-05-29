@@ -35,6 +35,6 @@ public class IndexTests : IClassFixture<CustomWebApplicationFactory<Program>>
 
         var products = content.QuerySelectorAll("#products .card");
 
-        Assert.Equal(3, products?.Length);
+        Assert.Equal(4, products?.Length);
     }
 }

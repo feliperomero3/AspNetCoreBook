@@ -11,4 +11,12 @@ public class Product
     public decimal Price { get; }
 
     public string Category { get; } = string.Empty;
+
+    public Product(string name, string description, decimal price, string category)
+    {
+        Name = name;
+        Description = description;
+        Price = price;
+        Category = category;
+    }
 }
