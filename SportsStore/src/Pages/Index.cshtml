@@ -18,8 +18,15 @@
 				</span>
 			</h3>
 		</div>
-		<div class="p-1">
-			@p.Description
-		</div>
+		<form id="@p.ProductId" asp-page="Cart" method="post">
+			<input type="hidden" name="returnUrl" value="@Request.PathAndQuery()" />
+			<input type="hidden" value="@p.ProductId" />
+			<span class="p-1">
+				@p.Description
+				<button class="btn btn-success btn-sm float-end" type="submit">
+					Add to Cart
+				</button>
+			</span>
+		</form>
 	</div>
 }
