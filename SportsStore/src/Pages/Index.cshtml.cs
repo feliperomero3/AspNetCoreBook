@@ -21,8 +21,8 @@ public class IndexModel : PageModel
     public void OnGet(string category)
     {
         Products = _dbContext.Products
-            .Where(p => string.IsNullOrEmpty(category) || string.Equals(p.Category.ToLower(), category.ToLower()))
             .AsNoTracking()
+            .Where(p => string.IsNullOrEmpty(category) || string.Equals(p.Category.ToLower(), category.ToLower()))
             .ToArray();
     }
 }

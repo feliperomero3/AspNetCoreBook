@@ -32,6 +32,7 @@ public class NavigationMenuViewComponent : ViewComponent
         ViewBag.SelectedCategory = category;
 
         var categories = await _dbContext.Products
+            .AsNoTracking()
             .Select(p => p.Category)
             .Distinct()
             .OrderBy(c => c)
