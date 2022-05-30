@@ -14,7 +14,7 @@
 			<h3>
 				@p.Name
 				<span class="badge rounded-pill bg-primary text-white float-end">
-					<small>@p.Price.ToString("c")</small>
+					<small>@Html.DisplayFor(_ => p.Price)</small>
 				</span>
 			</h3>
 		</div>
