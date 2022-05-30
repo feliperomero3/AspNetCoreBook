@@ -23,14 +23,14 @@
                 <td class="text-center">@line.Quantity</td>
                 <td class="text-start">@line.Product.Name</td>
                 <td class="text-end">@Html.DisplayFor(_ => line.Product.Price)</td>
-                <td class="text-right">@((line.Quantity * line.Product.Price).ToString("c"))</td>
+                <td class="text-end">@((line.Quantity * line.Product.Price).ToString("c"))</td>
             </tr>
         }
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="3" class="text-right">Total:</td>
-            <td class="text-right">
+            <td colspan="3" class="text-end">Total:</td>
+            <td class="text-end">
                 @Html.DisplayFor(m => m.Cart.TotalValue)
             </td>
         </tr>
