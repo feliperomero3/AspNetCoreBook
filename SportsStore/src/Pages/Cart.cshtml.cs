@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SportsStore.Data;
-using SportsStore.Entities;
 using SportsStore.Infrastructure;
 
 namespace SportsStore.Pages
@@ -17,7 +16,7 @@ namespace SportsStore.Pages
             _logger = logger;
         }
 
-        public Cart Cart { get; set; } = new();
+        public Models.CartModel Cart { get; set; } = new();
 
         public string ReturnUrl { get; set; } = "/";
 
@@ -25,7 +24,7 @@ namespace SportsStore.Pages
         {
             ReturnUrl = returnUrl ?? "/";
 
-            var storedCart = HttpContext.Session.GetJson<Cart>("cart");
+            var storedCart = HttpContext.Session.GetJson<Models.CartModel>("cart");
 
             if (storedCart is not null)
             {
@@ -39,14 +38,13 @@ namespace SportsStore.Pages
 
             if (product is not null)
             {
-                var storedCart = HttpContext.Session.GetJson<Cart>("cart");
+                var storedCart = HttpContext.Session.GetJson<Models.CartModel>("cart");
 
-                if (storedCart is not null)
-                {
-                    Cart = storedCart;
-                }
+                var cart = storedCart?.MapToCart() ?? new();
 
-                Cart.AddItem(product, 1);
+                cart.AddItem(product, 1);
+
+                Cart = Models.CartModel.MapFromCart(cart);
 
                 HttpContext.Session.SetJson("cart", Cart);
             }

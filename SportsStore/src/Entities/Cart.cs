@@ -8,6 +8,14 @@ public class Cart
 
     public decimal TotalValue => Lines.Sum(l => l.Product.Price * l.Quantity);
 
+    public Cart() { }
+
+    public Cart(long cartId, List<CartLine> lines)
+    {
+        CartId = cartId;
+        Lines = lines ?? throw new ArgumentNullException(nameof(lines));
+    }
+
     public void AddItem(Product product, int quantity)
     {
         if (product is null)
@@ -21,7 +29,7 @@ public class Cart
 
         if (line is null)
         {
-            Lines.Add(new CartLine(product, quantity));
+            Lines.Add(new CartLine(quantity, product));
         }
         else
         {

@@ -8,11 +8,16 @@ public class CartLine
 
     public Product Product { get; set; }
 
-    protected CartLine() { }
-
-    public CartLine(Product product, int quantity)
+    public CartLine(int quantity, Product product)
     {
-        Product = product ?? throw new ArgumentNullException(nameof(product));
         Quantity = quantity;
+        Product = product ?? throw new ArgumentNullException(nameof(product));
+    }
+
+    public CartLine(long cartLineId, int quantity, Product product)
+    {
+        CartLineId = cartLineId;
+        Quantity = quantity;
+        Product = product ?? throw new ArgumentNullException(nameof(product));
     }
 }

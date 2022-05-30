@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using SportsStore.Data;
-using SportsStore.Entities;
+using SportsStore.Models;
 
 namespace SportsStore.Pages;
 
@@ -14,15 +14,17 @@ public class IndexModel : PageModel
         _dbContext = dbContext;
     }
 
-    public IEnumerable<Product> Products { get; private set; } = Enumerable.Empty<Product>();
+    public IEnumerable<ProductModel> Products { get; private set; } = Enumerable.Empty<ProductModel>();
 
     public string CurrentCategory { get; set; } = string.Empty;
 
     public void OnGet(string category)
     {
-        Products = _dbContext.Products
+        var products = _dbContext.Products
             .AsNoTracking()
             .Where(p => string.IsNullOrEmpty(category) || string.Equals(p.Category.ToLower(), category.ToLower()))
             .ToArray();
+
+        Products = products.Select(p => ProductModel.MapFromProduct(p));
     }
 }
