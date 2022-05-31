@@ -12,8 +12,6 @@ public class Product
 
     public string Category { get; set; }
 
-    public Product() { }
-
     public Product(string name, string description, decimal price, string category)
     {
         Name = name;
