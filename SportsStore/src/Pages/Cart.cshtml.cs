@@ -24,12 +24,7 @@ namespace SportsStore.Pages
         {
             ReturnUrl = returnUrl ?? "/";
 
-            var storedCart = HttpContext.Session.GetJson<Models.CartModel>("cart");
-
-            if (storedCart is not null)
-            {
-                Cart = storedCart;
-            }
+            Cart = HttpContext.Session.GetJson<Models.CartModel>("cart") ?? new();
         }
 
         public ActionResult OnPost(long productId, string returnUrl)
