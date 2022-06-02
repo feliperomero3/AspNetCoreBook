@@ -7,7 +7,7 @@ public class CartModel
 {
     public long CartId { get; set; }
 
-    public List<CartLineModel>? Lines { get; set; }
+    public List<CartLineModel> Lines { get; set; } = new List<CartLineModel>();
 
     [DataType(DataType.Currency)]
     public decimal TotalValue { get; set; }
@@ -29,11 +29,6 @@ public class CartModel
 
     internal Cart MapToCart()
     {
-        if (Lines is null)
-        {
-            throw new InvalidOperationException("Models.CarModel.Lines is null");
-        }
-
         return new Cart(CartId, Lines.Select(l => l.MapToCartLine()).ToList());
     }
 }

@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SportsStore.Data;
+using SportsStore.Services;
 
 namespace SportsStore;
 
@@ -12,6 +13,8 @@ public class Program
         builder.Services.AddRazorPages();
         builder.Services.AddSession();
         builder.Services.AddDistributedMemoryCache();
+        builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+        builder.Services.AddScoped<CartService>();
 
         var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 

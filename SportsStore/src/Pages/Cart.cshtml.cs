@@ -1,22 +1,24 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SportsStore.Data;
-using SportsStore.Infrastructure;
+using SportsStore.Services;
 
 namespace SportsStore.Pages
 {
     public class CartModel : PageModel
     {
         private readonly StoreDbContext _dbContext;
+        private readonly CartService _cartService;
         private readonly ILogger<CartModel> _logger;
 
-        public CartModel(StoreDbContext dbContext, ILogger<CartModel> logger)
+        public CartModel(StoreDbContext dbContext, CartService cartService, ILogger<CartModel> logger)
         {
             _dbContext = dbContext;
+            _cartService = cartService;
             _logger = logger;
         }
 
-        public Models.CartModel Cart { get; set; } = new();
+        public Models.CartModel? Cart { get; set; }
 
         public string ReturnUrl { get; set; } = "/";
 
@@ -24,7 +26,7 @@ namespace SportsStore.Pages
         {
             ReturnUrl = returnUrl ?? "/";
 
-            Cart = HttpContext.Session.GetJson<Models.CartModel>("cart") ?? new();
+            Cart = _cartService.GetCart() ?? new();
         }
 
         public ActionResult OnPost(long productId, string returnUrl)
@@ -33,7 +35,7 @@ namespace SportsStore.Pages
 
             if (product is not null)
             {
-                var storedCart = HttpContext.Session.GetJson<Models.CartModel>("cart");
+                var storedCart = _cartService.GetCart();
 
                 var cart = storedCart?.MapToCart() ?? new();
 
@@ -41,7 +43,7 @@ namespace SportsStore.Pages
 
                 Cart = Models.CartModel.MapFromCart(cart);
 
-                HttpContext.Session.SetJson("cart", Cart);
+                _cartService.SetCart(Cart);
             }
 
             return RedirectToPage(new { returnUrl = returnUrl });
