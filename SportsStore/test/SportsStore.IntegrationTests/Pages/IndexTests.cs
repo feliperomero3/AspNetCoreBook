@@ -16,7 +16,7 @@ public class IndexTests : IClassFixture<CustomWebApplicationFactory<Program>>
     }
 
     [Fact]
-    public async Task Get_Index_Page_Returns_SuccessAsync()
+    public async Task Homepage()
     {
         var client = _factory.CreateClient();
 
