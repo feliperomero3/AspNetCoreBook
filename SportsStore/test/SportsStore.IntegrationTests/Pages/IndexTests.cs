@@ -26,7 +26,7 @@ public class IndexTests : IClassFixture<CustomWebApplicationFactory<Program>>
     }
 
     [Fact]
-    public async Task Get_Index_Page_Filtered_Products_By_Category()
+    public async Task Filter_Products_by_Category()
     {
         var client = _factory.CreateClient();
 
