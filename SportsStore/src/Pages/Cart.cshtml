@@ -7,7 +7,7 @@
 
 <h4>@ViewBag.Title</h4>
 
-<table class="table table-bordered table-striped">
+<table id="cart" class="table table-bordered table-striped">
     <thead>
         <tr>
             <th>Quantity</th>
@@ -16,10 +16,10 @@
             <th class="text-end">Subtotal</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="lines">
         @foreach (var line in Model.Cart.Lines ?? Enumerable.Empty<Models.CartLineModel>())
         {
-            <tr>
+            <tr id="product-@(line.Product.ProductId)">
                 <td class="text-center">@line.Quantity</td>
                 <td class="text-start">@line.Product.Name</td>
                 <td class="text-end">@Html.DisplayFor(_ => line.Product.Price)</td>

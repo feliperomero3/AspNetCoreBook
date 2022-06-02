@@ -4,20 +4,18 @@ using AngleSharp.Html.Dom;
 
 namespace SportsStore.IntegrationTests.Helpers;
 
-#nullable disable
-
 public static class HtmlDocumentHelper
 {
     public static async Task<IHtmlDocument> GetDocumentAsync(HttpResponseMessage response)
     {
-        var contentStream = await response.Content.ReadAsStreamAsync();
+        var contentStream = await response.Content.ReadAsStreamAsync() ?? throw new InvalidOperationException("Response content is null.");
 
         var browser = BrowsingContext.New();
 
         var document = await browser.OpenAsync(virtualResponse =>
         {
             virtualResponse.Content(contentStream, shouldDispose: true);
-            virtualResponse.Address(response.RequestMessage.RequestUri).Status(response.StatusCode);
+            virtualResponse.Address(response.RequestMessage!.RequestUri).Status(response.StatusCode);
 
             MapHeaders(response.Headers);
             MapHeaders(response.Content.Headers);
