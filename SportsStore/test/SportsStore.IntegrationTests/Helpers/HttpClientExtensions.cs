@@ -48,4 +48,13 @@ public static class HttpClientExtensions
 
         return client.SendAsync(submission);
     }
+
+    public static Task<HttpResponseMessage> SendAsync(
+        this HttpClient client,
+        IHtmlFormElement form,
+        IHtmlElement submitButton)
+    {
+        return SendAsync(client, form, submitButton, new Dictionary<string, string> { });
+    }
+
 }
