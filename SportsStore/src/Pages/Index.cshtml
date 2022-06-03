@@ -9,7 +9,7 @@
 
 @foreach (var p in Model.Products)
 {
-	<div class="card border-primary m-1 p-1">
+	<div id="product-(@p.ProductId)" class="card border-primary m-1 p-1">
 		<div class="bg-opacity-50 p-1">
 			<h3>
 				@p.Name
@@ -18,7 +18,7 @@
 				</span>
 			</h3>
 		</div>
-		<form id="@p.ProductId" asp-page="Cart" method="post">
+		<form asp-page="Cart" method="post">
 			<input type="hidden" name="returnUrl" value="@Request.PathAndQuery()" />
 			<input type="hidden" name="productId" value="@p.ProductId" />
 			<span class="p-1">

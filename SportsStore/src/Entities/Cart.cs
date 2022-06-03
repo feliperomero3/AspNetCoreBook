@@ -4,7 +4,7 @@ public class Cart
 {
     public long CartId { get; set; }
 
-    public List<CartLine> Lines { get; set; } = new List<CartLine>();
+    public List<CartLine> Lines { get; private set; } = new List<CartLine>();
 
     public decimal TotalValue => Lines.Sum(l => l.Product.Price * l.Quantity);
 
@@ -35,6 +35,11 @@ public class Cart
         {
             line.Quantity += quantity;
         }
+    }
+
+    public Product? GetItem(long productId)
+    {
+        return Lines.Find(l => l.Product.ProductId == productId)?.Product;
     }
 
     public void RemoveLine(Product product)

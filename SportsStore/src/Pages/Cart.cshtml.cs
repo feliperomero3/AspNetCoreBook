@@ -18,7 +18,7 @@ namespace SportsStore.Pages
             _logger = logger;
         }
 
-        public Models.CartModel? Cart { get; set; }
+        public Models.CartModel Cart { get; set; } = new();
 
         public string ReturnUrl { get; set; } = "/";
 
@@ -40,6 +40,28 @@ namespace SportsStore.Pages
                 var cart = storedCart?.MapToCart() ?? new();
 
                 cart.AddItem(product, 1);
+
+                Cart = Models.CartModel.MapFromCart(cart);
+
+                _cartService.SetCart(Cart);
+            }
+
+            return RedirectToPage(new { returnUrl = returnUrl });
+        }
+
+        public ActionResult OnPostRemove(long productId, string returnUrl)
+        {
+            Cart = _cartService.GetCart();
+
+            var lineModel = Cart.Lines.Find(l => l.Product.ProductId == productId);
+
+            if (lineModel is not null)
+            {
+                var cart = Cart.MapToCart();
+
+                var product = cart.GetItem(productId)!;
+
+                cart.RemoveLine(product);
 
                 Cart = Models.CartModel.MapFromCart(cart);
 
