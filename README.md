@@ -24,7 +24,7 @@ NOTE: I'm using Razor Pages instead of MVC like in the book.
 1. Press F5 to start the application.
 1. Open your web browser and go to <https://localhost:5000>.
 
-## Screen capture
+## Screen captures
 
 ![Home page](./SportsStore.png)
 _Home page_
