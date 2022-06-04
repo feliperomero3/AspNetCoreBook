@@ -4,11 +4,16 @@ public class Cart
 {
     public long CartId { get; set; }
 
-    public List<CartLine> Lines { get; private set; } = new List<CartLine>();
+    public List<CartLine> Lines { get; private set; }
 
     public decimal TotalValue => Lines.Sum(l => l.Product.Price * l.Quantity);
 
-    public Cart() { }
+    public int TotalQuantity => Lines.Sum(l => l.Quantity);
+
+    public Cart()
+    {
+        Lines = new List<CartLine>();
+    }
 
     public Cart(long cartId, List<CartLine> lines)
     {

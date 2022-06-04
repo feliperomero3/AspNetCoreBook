@@ -1,0 +1,8 @@
+﻿@model Models.CartModel
+
+<span>
+    <a class="text-white text-decoration-none" asp-page="Cart" asp-route-returnurl="@ViewContext.HttpContext.Request.PathAndQuery()">
+        <b>Your cart</b>: @Model.TotalQuantity item(s) @Html.DisplayFor(m => m.TotalValue)
+        <img src="~/cart.svg" alt="Cart" width="24" height="24">
+    </a>
+</span>

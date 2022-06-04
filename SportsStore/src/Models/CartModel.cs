@@ -12,6 +12,8 @@ public class CartModel
     [DataType(DataType.Currency)]
     public decimal TotalValue { get; set; }
 
+    public int TotalQuantity { get; set; }
+
     internal static CartModel MapFromCart(Cart cart)
     {
         if (cart is null)
@@ -23,7 +25,8 @@ public class CartModel
         {
             CartId = cart.CartId,
             Lines = cart.Lines.Select(l => CartLineModel.MapFromCartLine(l)).ToList(),
-            TotalValue = cart.TotalValue
+            TotalValue = cart.TotalValue,
+            TotalQuantity = cart.TotalQuantity,
         };
     }
 
