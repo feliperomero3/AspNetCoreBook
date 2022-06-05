@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using SportsStore.Entities;
 
@@ -33,5 +34,6 @@ public class OrderModel
     [Required(ErrorMessage = "Please enter a country name")]
     public string Country { get; set; } = string.Empty;
 
+    [DisplayName("Gift wrap these items")]
     public bool GiftWrap { get; set; }
 }

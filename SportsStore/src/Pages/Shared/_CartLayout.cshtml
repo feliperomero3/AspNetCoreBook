@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 
-<html>
+<html lang="en">
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title - SportsStore</title>
@@ -14,6 +14,9 @@
         <span class="mx-2">
             <a class="navbar-brand" asp-page="Index">SPORTS STORE</a>
         </span>
+        <div class="navbar-nav mx-2">
+            @await Component.InvokeAsync("CartSummary")
+        </div>
     </div>
     <div class="row m-1 p-1">
         @RenderBody()
