@@ -35,9 +35,9 @@ namespace SportsStore.Pages
 
             if (product is not null)
             {
-                var storedCart = _cartService.GetCart();
+                var storedCart = _cartService.GetCart() ?? new();
 
-                var cart = storedCart?.MapToCart() ?? new();
+                var cart = storedCart.MapToCart();
 
                 cart.AddItem(product, 1);
 
@@ -51,7 +51,7 @@ namespace SportsStore.Pages
 
         public ActionResult OnPostRemove(long productId, string returnUrl)
         {
-            Cart = _cartService.GetCart();
+            Cart = _cartService.GetCart() ?? new();
 
             var lineModel = Cart.Lines.Find(l => l.Product.ProductId == productId);
 

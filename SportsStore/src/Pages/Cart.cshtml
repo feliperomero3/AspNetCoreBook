@@ -24,7 +24,7 @@
                 <td class="text-center">@line.Quantity</td>
                 <td class="text-start">@line.Product.Name</td>
                 <td class="text-end">@Html.DisplayFor(_ => line.Product.Price)</td>
-                <td class="text-end">@((line.Quantity * line.Product.Price).ToString("c"))</td>
+                <td class="text-end">@Html.DisplayFor(_ => line.TotalValue)</td>
                 <td class="text-center">
                     <form asp-page-handler="Remove" method="post">
                         <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
@@ -48,5 +48,6 @@
 </table>
 
 <div class="text-center">
-    <a class="btn btn-primary" href="@Model.ReturnUrl">Continue shopping</a>
+    <a class="btn btn-secondary" href="@Model.ReturnUrl">Continue shopping</a>
+    <a class="btn btn-primary" asp-page="Checkout">Checkout</a>
 </div>

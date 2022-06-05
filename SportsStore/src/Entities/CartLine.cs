@@ -8,6 +8,8 @@ public class CartLine
 
     public Product Product { get; set; }
 
+    public decimal TotalValue => Quantity * Product.Price;
+
     public CartLine(int quantity, Product product)
     {
         Quantity = quantity;

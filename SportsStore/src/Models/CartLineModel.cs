@@ -1,4 +1,5 @@
-﻿using SportsStore.Entities;
+﻿using System.ComponentModel.DataAnnotations;
+using SportsStore.Entities;
 
 namespace SportsStore.Models;
 
@@ -10,6 +11,9 @@ public class CartLineModel
 
     public ProductModel Product { get; set; } = new();
 
+    [DataType(DataType.Currency)]
+    public decimal TotalValue { get; set; }
+
     internal static CartLineModel MapFromCartLine(CartLine cartLine)
     {
         if (cartLine is null)
@@ -20,7 +24,8 @@ public class CartLineModel
         return new CartLineModel
         {
             Quantity = cartLine.Quantity,
-            Product = ProductModel.MapFromProduct(cartLine.Product)
+            Product = ProductModel.MapFromProduct(cartLine.Product),
+            TotalValue = cartLine.TotalValue
         };
     }
 
