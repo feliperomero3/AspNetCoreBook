@@ -26,14 +26,17 @@ NOTE: I'm using Razor Pages instead of MVC like in the book.
 
 ## Screen captures
 
-![Home page](./SportsStore.png)
+![Home page](./SportsStore.png)  
 _Home page_
 
-![Category filter page](./SportsStoreCategoryFilter.png)
+![Category filter page](./SportsStoreCategoryFilter.png)  
 _Category filter page_
 
-![Cart page](./SportsStoreCartPage.png)
+![Cart page](./SportsStoreCartPage.png)  
 _Cart page_
+
+![Checkout page](./SportsStoreCheckoutPage.png)  
+_Checkout page_
 
 ## License
 
