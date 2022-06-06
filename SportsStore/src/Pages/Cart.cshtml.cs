@@ -3,72 +3,71 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using SportsStore.Data;
 using SportsStore.Services;
 
-namespace SportsStore.Pages
+namespace SportsStore.Pages;
+
+public class CartModel : PageModel
 {
-    public class CartModel : PageModel
+    private readonly StoreDbContext _dbContext;
+    private readonly CartService _cartService;
+    private readonly ILogger<CartModel> _logger;
+
+    public CartModel(StoreDbContext dbContext, CartService cartService, ILogger<CartModel> logger)
     {
-        private readonly StoreDbContext _dbContext;
-        private readonly CartService _cartService;
-        private readonly ILogger<CartModel> _logger;
+        _dbContext = dbContext;
+        _cartService = cartService;
+        _logger = logger;
+    }
 
-        public CartModel(StoreDbContext dbContext, CartService cartService, ILogger<CartModel> logger)
+    public Models.CartModel Cart { get; set; } = new();
+
+    public string ReturnUrl { get; set; } = "/";
+
+    public void OnGet(string? returnUrl)
+    {
+        ReturnUrl = returnUrl ?? "/";
+
+        Cart = _cartService.GetCart() ?? new();
+    }
+
+    public ActionResult OnPost(long productId, string returnUrl)
+    {
+        var product = _dbContext.Products.FirstOrDefault(p => p.ProductId == productId);
+
+        if (product is not null)
         {
-            _dbContext = dbContext;
-            _cartService = cartService;
-            _logger = logger;
+            var storedCart = _cartService.GetCart() ?? new();
+
+            var cart = storedCart.MapToCart();
+
+            cart.AddItem(product, 1);
+
+            Cart = Models.CartModel.MapFromCart(cart);
+
+            _cartService.SetCart(Cart);
         }
 
-        public Models.CartModel Cart { get; set; } = new();
+        return RedirectToPage(new { returnUrl = returnUrl });
+    }
 
-        public string ReturnUrl { get; set; } = "/";
+    public ActionResult OnPostRemove(long productId, string returnUrl)
+    {
+        Cart = _cartService.GetCart() ?? new();
 
-        public void OnGet(string? returnUrl)
+        var lineModel = Cart.Lines.Find(l => l.Product.ProductId == productId);
+
+        if (lineModel is not null)
         {
-            ReturnUrl = returnUrl ?? "/";
+            var cart = Cart.MapToCart();
 
-            Cart = _cartService.GetCart() ?? new();
+            var product = cart.GetItem(productId)!;
+
+            cart.RemoveLine(product);
+
+            Cart = Models.CartModel.MapFromCart(cart);
+
+            _cartService.SetCart(Cart);
         }
 
-        public ActionResult OnPost(long productId, string returnUrl)
-        {
-            var product = _dbContext.Products.FirstOrDefault(p => p.ProductId == productId);
-
-            if (product is not null)
-            {
-                var storedCart = _cartService.GetCart() ?? new();
-
-                var cart = storedCart.MapToCart();
-
-                cart.AddItem(product, 1);
-
-                Cart = Models.CartModel.MapFromCart(cart);
-
-                _cartService.SetCart(Cart);
-            }
-
-            return RedirectToPage(new { returnUrl = returnUrl });
-        }
-
-        public ActionResult OnPostRemove(long productId, string returnUrl)
-        {
-            Cart = _cartService.GetCart() ?? new();
-
-            var lineModel = Cart.Lines.Find(l => l.Product.ProductId == productId);
-
-            if (lineModel is not null)
-            {
-                var cart = Cart.MapToCart();
-
-                var product = cart.GetItem(productId)!;
-
-                cart.RemoveLine(product);
-
-                Cart = Models.CartModel.MapFromCart(cart);
-
-                _cartService.SetCart(Cart);
-            }
-
-            return RedirectToPage(new { returnUrl = returnUrl });
-        }
+        return RedirectToPage(new { returnUrl = returnUrl });
     }
 }
