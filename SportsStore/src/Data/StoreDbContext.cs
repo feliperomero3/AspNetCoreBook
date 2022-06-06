@@ -10,6 +10,7 @@ public class StoreDbContext : DbContext
     }
 
     public DbSet<Product> Products => Set<Product>();
+    public DbSet<Order> Orders => Set<Order>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -24,6 +25,5 @@ public class StoreDbContext : DbContext
             builder.Property(p => p.Price).HasColumnType("decimal(8, 2)");
             builder.Property(p => p.Category).HasMaxLength(50).IsRequired();
         });
-
     }
 }
