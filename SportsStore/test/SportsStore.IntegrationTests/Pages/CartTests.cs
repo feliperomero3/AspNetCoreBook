@@ -10,6 +10,7 @@ public class CartTests : IClassFixture<CustomWebApplicationFactory<Program>>
     public CartTests(CustomWebApplicationFactory<Program> factory)
     {
         _factory = factory;
+        _factory.ClientOptions.BaseAddress = new Uri("https://localhost:5000/");
     }
 
     [Fact]

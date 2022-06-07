@@ -22,4 +22,9 @@ public class CartService
     {
         _contextAccesor.HttpContext?.Session.SetJson(_sessionKey, cart);
     }
+
+    public void RemoveCart()
+    {
+        _contextAccesor.HttpContext?.Session.Remove(_sessionKey);
+    }
 }
