@@ -6,7 +6,7 @@ public class Order
 
     public ICollection<CartLine> Lines { get; set; } = new List<CartLine>();
 
-    public string Name { get; } = string.Empty;
+    public string Name { get; set; } = string.Empty;
 
     public string Line1 { get; set; } = string.Empty;
 
