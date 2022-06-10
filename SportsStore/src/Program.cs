@@ -15,12 +15,18 @@ public class Program
         builder.Services.AddDistributedMemoryCache();
         builder.Services.AddHttpContextAccessor();
         builder.Services.AddScoped<CartService>();
+        builder.Services.AddScoped<StoreDbContextInitializer>();
 
         var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
         builder.Services.AddDbContext<StoreDbContext>(options => options.UseSqlServer(connectionString));
 
         var app = builder.Build();
+
+        using (var scope = app.Services.CreateScope())
+        {
+            scope.ServiceProvider.GetRequiredService<StoreDbContextInitializer>().Initialize();
+        }
 
         app.UseHttpsRedirection();
 
