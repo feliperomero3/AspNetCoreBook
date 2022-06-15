@@ -14,10 +14,14 @@ variables:
 
 steps:
 - task: UseDotNet@2
+  displayName: Install .NET Core SDK
   inputs:
     packageType: 'sdk'
     useGlobalJson: true
     workingDirectory: 'SportsStore'
 
-- script: dotnet build --configuration $(buildConfiguration) SportsStore\src\SportsStore.csproj
+- script: dotnet restore SportsStore\src\SportsStore.csproj
+  displayName: 'dotnet restore'
+
+- script: dotnet build --no-restore --configuration $(buildConfiguration) SportsStore\src\SportsStore.csproj
   displayName: 'dotnet build $(buildConfiguration)'
