@@ -1,5 +1,7 @@
 # ASP.NET Core 6 Book
 
+[![Build Status][build-badge]][build-status]
+
 Based on the Web Application built in the Book 'Pro ASP.NET Core 6: Develop Cloud-Ready Web Applications Using MVC, Blazor, and Razor Pages' by Adam Freeman (Apress, 2022).
 
 SportsStore provides an online product catalog that customers can browse by category and page, a shopping cart
@@ -43,3 +45,6 @@ _Checkout page_
 [MIT License](./LICENSE)
 
 Copyright &copy; 2022 Felipe Romero
+
+[build-status]: https://dev.azure.com/feliperomeromx/Projects/_build/latest?definitionId=15&branchName=master
+[build-badge]: https://dev.azure.com/feliperomeromx/Projects/_apis/build/status/feliperomero3.AspNetCoreBook_SportsStore-CI?branchName=master
