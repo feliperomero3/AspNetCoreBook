@@ -10,7 +10,9 @@ public class CartLine
 
     public decimal TotalValue => Quantity * Product.Price;
 
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Required by EF Core
     private CartLine() { }
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Required by EF Core
 
     public CartLine(int quantity, Product product)
     {

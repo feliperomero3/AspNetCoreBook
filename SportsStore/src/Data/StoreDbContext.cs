@@ -25,5 +25,23 @@ public class StoreDbContext : DbContext
             builder.Property(p => p.Price).HasColumnType("decimal(8, 2)");
             builder.Property(p => p.Category).HasMaxLength(50).IsRequired();
         });
+
+        modelBuilder.Entity<CartLine>(builder =>
+        {
+            builder.ToTable("CartLine").HasKey(l => l.CartLineId);
+            builder.Property(l => l.CartLineId).HasColumnType("bigint");
+            builder.Property(l => l.Quantity).HasColumnType("int").IsRequired();
+        });
+
+        modelBuilder.Entity<Order>(builder =>
+        {
+            builder.ToTable("Orders").HasKey(o => o.OrderId);
+            builder.Property(o => o.OrderId).HasColumnType("bigint");
+            builder.Property(o => o.Name).HasMaxLength(50).IsRequired();
+            builder.Property(o => o.City).HasMaxLength(50).IsRequired();
+            builder.Property(o => o.State).HasMaxLength(50).IsRequired();
+            builder.Property(o => o.Zip).HasMaxLength(10).IsRequired();
+            builder.Property(o => o.Country).HasMaxLength(50).IsRequired();
+        });
     }
 }
