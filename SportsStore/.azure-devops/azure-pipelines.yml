@@ -13,5 +13,11 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    useGlobalJson: true
+    workingDirectory: 'SportsStore'
+
 - script: dotnet build --configuration $(buildConfiguration) SportsStore\src\SportsStore.csproj
   displayName: 'dotnet build $(buildConfiguration)'
