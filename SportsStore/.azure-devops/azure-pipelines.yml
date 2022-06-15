@@ -25,3 +25,8 @@ steps:
 
 - script: dotnet build --no-restore --configuration $(buildConfiguration) SportsStore\src\SportsStore.csproj
   displayName: 'dotnet build $(buildConfiguration)'
+
+- script: |
+    dotnet test --configuration $(buildConfiguration) .\SportsStore\test\SportsStore.IntegrationTests\SportsStore.IntegrationTests.csproj
+    dotnet test --configuration $(buildConfiguration) .\SportsStore\test\SportsStore.Tests\SportsStore.Tests.csproj
+  displayName: 'dotnet test $(buildConfiguration)'
