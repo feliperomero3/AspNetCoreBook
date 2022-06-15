@@ -2,30 +2,31 @@
 
 public class Order
 {
-    public long OrderId { get; set; }
+    public long OrderId { get; private set; }
 
-    public ICollection<CartLine> Lines { get; set; } = new List<CartLine>();
+    public ICollection<CartLine> Lines { get; private set; }
 
-    public string Name { get; set; } = string.Empty;
+    public string Name { get; private set; } = string.Empty;
 
-    public string Line1 { get; set; } = string.Empty;
+    public string Line1 { get; private set; } = string.Empty;
 
-    public string? Line2 { get; set; }
+    public string? Line2 { get; private set; }
 
-    public string? Line3 { get; set; }
+    public string? Line3 { get; private set; }
 
-    public string City { get; set; } = string.Empty;
+    public string City { get; private set; } = string.Empty;
 
-    public string State { get; set; } = string.Empty;
+    public string State { get; private set; } = string.Empty;
 
-    public string Zip { get; set; } = string.Empty;
+    public string Zip { get; private set; } = string.Empty;
 
-    public string Country { get; set; } = string.Empty;
+    public string Country { get; private set; } = string.Empty;
 
-    public bool GiftWrap { get; set; }
+    public bool GiftWrap { get; private set; }
 
     private Order()
     {
+        Lines = new List<CartLine>();
     }
 
     public Order(ICollection<CartLine> lines,

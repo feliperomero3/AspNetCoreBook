@@ -2,7 +2,7 @@
 
 public class Cart
 {
-    public long CartId { get; set; }
+    public long CartId { get; private set; }
 
     public List<CartLine> Lines { get; private set; }
 

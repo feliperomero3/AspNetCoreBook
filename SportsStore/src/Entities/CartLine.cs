@@ -2,11 +2,11 @@
 
 public class CartLine
 {
-    public long CartLineId { get; set; }
+    public long CartLineId { get; private set; }
 
     public int Quantity { get; set; }
 
-    public Product Product { get; set; }
+    public Product Product { get; private set; }
 
     public decimal TotalValue => Quantity * Product.Price;
 
