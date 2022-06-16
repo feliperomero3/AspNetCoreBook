@@ -20,13 +20,16 @@ steps:
     useGlobalJson: true
     workingDirectory: 'SportsStore'
 
-- script: dotnet restore SportsStore\src\SportsStore.csproj
+- script: dotnet restore src\SportsStore.csproj
   displayName: 'Restore'
+  workingDirectory: 'SportsStore'
 
-- script: dotnet build --no-restore --configuration $(buildConfiguration) SportsStore\src\SportsStore.csproj
+- script: dotnet build --no-restore --configuration $(buildConfiguration) src\SportsStore.csproj
   displayName: 'Build project'
+  workingDirectory: 'SportsStore'
 
 - script: |
-    dotnet test --configuration $(buildConfiguration) .\SportsStore\test\SportsStore.IntegrationTests\SportsStore.IntegrationTests.csproj
-    dotnet test --configuration $(buildConfiguration) .\SportsStore\test\SportsStore.Tests\SportsStore.Tests.csproj
+    dotnet test --configuration $(buildConfiguration) test\SportsStore.IntegrationTests\SportsStore.IntegrationTests.csproj
+    dotnet test --configuration $(buildConfiguration) test\SportsStore.Tests\SportsStore.Tests.csproj
   displayName: 'Build and run test projects'
+  workingDirectory: 'SportsStore'
