@@ -29,7 +29,7 @@ steps:
   workingDirectory: 'SportsStore'
 
 - script: |
-    dotnet test --configuration $(buildConfiguration) test\SportsStore.IntegrationTests\SportsStore.IntegrationTests.csproj
-    dotnet test --configuration $(buildConfiguration) test\SportsStore.Tests\SportsStore.Tests.csproj
+    dotnet test --configuration $(buildConfiguration) --collect:"XPlat Code Coverage" --results-directory .\TestResults SportsStore.IntegrationTests\SportsStore.IntegrationTests.csproj
+    dotnet test --configuration $(buildConfiguration) --collect:"XPlat Code Coverage" --results-directory .\TestResults SportsStore.Tests\SportsStore.Tests.csproj
   displayName: 'Build and run test projects'
-  workingDirectory: 'SportsStore'
+  workingDirectory: 'SportsStore\test'
