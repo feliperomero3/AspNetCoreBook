@@ -21,12 +21,12 @@ steps:
     workingDirectory: 'SportsStore'
 
 - script: dotnet restore SportsStore\src\SportsStore.csproj
-  displayName: 'dotnet restore'
+  displayName: 'Restore'
 
 - script: dotnet build --no-restore --configuration $(buildConfiguration) SportsStore\src\SportsStore.csproj
-  displayName: 'dotnet build $(buildConfiguration)'
+  displayName: 'Build project'
 
 - script: |
     dotnet test --configuration $(buildConfiguration) .\SportsStore\test\SportsStore.IntegrationTests\SportsStore.IntegrationTests.csproj
     dotnet test --configuration $(buildConfiguration) .\SportsStore\test\SportsStore.Tests\SportsStore.Tests.csproj
-  displayName: 'dotnet test $(buildConfiguration)'
+  displayName: 'Build and run test projects'
