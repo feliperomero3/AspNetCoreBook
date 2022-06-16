@@ -33,3 +33,9 @@ steps:
     dotnet test --configuration $(buildConfiguration) --collect:"XPlat Code Coverage" --results-directory .\TestResults SportsStore.Tests\SportsStore.Tests.csproj
   displayName: 'Build and run test projects'
   workingDirectory: 'SportsStore\test'
+
+- task: PublishCodeCoverageResults@1
+  displayName: Publish code coverage
+  inputs:
+    codeCoverageTool: 'Cobertura'
+    summaryFileLocation: '$(System.DefaultWorkingDirectory)\SportsStore\test\TestResults\**\coverage.cobertura.xml'
