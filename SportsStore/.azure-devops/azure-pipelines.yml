@@ -29,8 +29,8 @@ steps:
   workingDirectory: 'SportsStore'
 
 - script: |
-    dotnet test --configuration $(buildConfiguration) --collect:"XPlat Code Coverage" --results-directory .\TestResults SportsStore.IntegrationTests\SportsStore.IntegrationTests.csproj
-    dotnet test --configuration $(buildConfiguration) --collect:"XPlat Code Coverage" --results-directory .\TestResults SportsStore.Tests\SportsStore.Tests.csproj
+    dotnet test --configuration $(buildConfiguration) --logger trx --collect:"XPlat Code Coverage" --results-directory .\TestResults SportsStore.IntegrationTests\SportsStore.IntegrationTests.csproj
+    dotnet test --configuration $(buildConfiguration) --logger trx --collect:"XPlat Code Coverage" --results-directory .\TestResults SportsStore.Tests\SportsStore.Tests.csproj
   displayName: 'Build and run test projects'
   workingDirectory: 'SportsStore\test'
 
