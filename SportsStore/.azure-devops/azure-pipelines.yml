@@ -34,6 +34,12 @@ steps:
   displayName: 'Build and run test projects'
   workingDirectory: 'SportsStore\test'
 
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'VSTest'
+    testResultsFiles: '**/coverage.cobertura.xml'
+    buildConfiguration: '$(buildConfiguration)'
+
 - task: PublishCodeCoverageResults@1
   displayName: Publish code coverage
   inputs:
