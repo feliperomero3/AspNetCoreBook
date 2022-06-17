@@ -39,9 +39,3 @@ steps:
     testResultsFormat: 'VSTest'
     testResultsFiles: '**\TestResults\**\*.trx'
     buildConfiguration: '$(buildConfiguration)'
-
-- task: PublishCodeCoverageResults@1
-  displayName: Publish code coverage
-  inputs:
-    codeCoverageTool: 'Cobertura'
-    summaryFileLocation: '$(System.DefaultWorkingDirectory)\SportsStore\test\TestResults\**\coverage.cobertura.xml'
