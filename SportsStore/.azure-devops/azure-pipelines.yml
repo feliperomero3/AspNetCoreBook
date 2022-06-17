@@ -37,7 +37,7 @@ steps:
 - task: PublishTestResults@2
   inputs:
     testResultsFormat: 'VSTest'
-    testResultsFiles: '**/coverage.cobertura.xml'
+    testResultsFiles: '**\TestResults\**\*.trx'
     buildConfiguration: '$(buildConfiguration)'
 
 - task: PublishCodeCoverageResults@1
