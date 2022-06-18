@@ -58,5 +58,5 @@ steps:
   displayName: 'Publish code coverage artifacts'
   inputs:
     targetPath: '$(System.DefaultWorkingDirectory)\SportsStore\test\coveragereport'
-    artifact: 'CodeCoverage'
+    artifact: '$(Build.DefinitionName)_$(Build.BuildNumber)_CodeCoverage'
     publishLocation: 'pipeline'    
