@@ -50,10 +50,11 @@ steps:
     targetdir: '$(System.DefaultWorkingDirectory)\SportsStore\test\coveragereport'
     
 - task: PublishCodeCoverageResults@1
-  displayName: 'Publish code coverage'
+  displayName: 'Publish code coverage results'
   inputs:
     codeCoverageTool: 'Cobertura'
     summaryFileLocation: '$(System.DefaultWorkingDirectory)\SportsStore\test\coveragereport\Cobertura.xml'
+    reportDirectory: '$(System.DefaultWorkingDirectory)\SportsStore\test\coveragereport'
 
 - task: PublishPipelineArtifact@1
   displayName: 'Publish code coverage artifacts'
