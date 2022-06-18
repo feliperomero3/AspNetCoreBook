@@ -11,10 +11,11 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
+  disable.coverage.autogenerate: 'true'
 
 steps:
 - task: UseDotNet@2
-  displayName: Install .NET Core SDK
+  displayName: 'Install .NET Core SDK'
   inputs:
     packageType: 'sdk'
     useGlobalJson: true
@@ -35,12 +36,20 @@ steps:
   workingDirectory: 'SportsStore\test'
 
 - task: PublishTestResults@2
+  displayName: 'Publish test results'
   inputs:
     testResultsFormat: 'VSTest'
     testResultsFiles: '**\TestResults\**\*.trx'
     buildConfiguration: '$(buildConfiguration)'
 
 - task: reportgenerator@5
+  displayName: 'Generate code coverage report'
   inputs:
     reports: '$(System.DefaultWorkingDirectory)\SportsStore\test\TestResults\**\coverage.cobertura.xml'
-    targetdir: 'coveragereport'
+    targetdir: '$(System.DefaultWorkingDirectory)\SportsStore\test\coveragereport'
+    
+- task: PublishCodeCoverageResults@1
+  displayName: 'Publish code coverage'
+  inputs:
+    codeCoverageTool: 'Cobertura'
+    summaryFileLocation: '$(System.DefaultWorkingDirectory)\SportsStore\test\coveragereport\Cobertura.xml'
