@@ -40,9 +40,7 @@ steps:
     testResultsFiles: '**\TestResults\**\*.trx'
     buildConfiguration: '$(buildConfiguration)'
 
-- task: PublishCodeCoverageResults@2
-  displayName: 'Publish code coverage'
+- task: reportgenerator@5
   inputs:
-    codeCoverageTool: 'Cobertura'
-    summaryFileLocation: '$(System.DefaultWorkingDirectory)\SportsStore\test\TestResults\**\coverage.cobertura.xml'
-    
+    reports: '$(System.DefaultWorkingDirectory)\SportsStore\test\TestResults\**\coverage.cobertura.xml'
+    targetdir: 'coveragereport'
