@@ -53,3 +53,10 @@ steps:
   inputs:
     codeCoverageTool: 'Cobertura'
     summaryFileLocation: '$(System.DefaultWorkingDirectory)\SportsStore\test\coveragereport\Cobertura.xml'
+
+- task: PublishPipelineArtifact@1
+  displayName: 'Publish code coverage artifacts'
+  inputs:
+    targetPath: '$(System.DefaultWorkingDirectory)\SportsStore\test\coveragereport'
+    artifact: 'CodeCoverage'
+    publishLocation: 'pipeline'    
