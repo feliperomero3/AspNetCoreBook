@@ -41,6 +41,7 @@ steps:
     testResultsFormat: 'VSTest'
     testResultsFiles: '**\TestResults\**\*.trx'
     buildConfiguration: '$(buildConfiguration)'
+    publishRunAttachments: 'false'
 
 - task: reportgenerator@5
   displayName: 'Generate code coverage report'
