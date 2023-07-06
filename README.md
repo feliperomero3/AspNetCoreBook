@@ -43,7 +43,7 @@ _Checkout page_
 
 [MIT License](./LICENSE)
 
-Copyright &copy; 2022 Felipe Romero
+Copyright &copy; 2023 Felipe Romero
 
 [build-status]: https://dev.azure.com/feliperomeromx/Projects/_build/latest?definitionId=15&branchName=master
 [build-badge]: https://dev.azure.com/feliperomeromx/Projects/_apis/build/status/feliperomero3.AspNetCoreBook_SportsStore-CI?branchName=master
