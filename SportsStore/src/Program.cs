@@ -14,6 +14,8 @@ public class Program
         builder.Services.AddSession();
         builder.Services.AddDistributedMemoryCache();
         builder.Services.AddHttpContextAccessor();
+        builder.Services.AddServerSideBlazor();
+
         builder.Services.AddScoped<CartService>();
         builder.Services.AddScoped<StoreDbContextInitializer>();
 
@@ -37,6 +39,9 @@ public class Program
         app.UseSession();
 
         app.MapRazorPages();
+
+        app.MapBlazorHub();
+        app.MapFallbackToPage("/admin/{*catchall}", "/Admin/Index");
 
         app.Run();
     }
