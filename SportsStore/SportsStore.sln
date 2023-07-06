@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportsStore", "src\SportsSt
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportsStore.Tests", "test\SportsStore.Tests\SportsStore.Tests.csproj", "{D1204F9E-334F-4D3A-BA48-7C4C4E854F31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsStore.IntegrationTests", "test\SportsStore.IntegrationTests\SportsStore.IntegrationTests.csproj", "{2D36C4BE-B407-44C9-94DB-C99D1BFBDCF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportsStore.IntegrationTests", "test\SportsStore.IntegrationTests\SportsStore.IntegrationTests.csproj", "{2D36C4BE-B407-44C9-94DB-C99D1BFBDCF5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
