@@ -20,7 +20,7 @@ NOTE: I'm using Razor Pages instead of MVC like in the book.
 
 1. Clone the project.
 1. Open the solution file `SportsStore\SportsStore.sln`.
-1. Restore client-side libraries using Libman.
+1. In the solution explorer, right-click the solution node and click 'Restore Client-Side libraries' option.
 1. Build the solution.
 1. Press F5 to start the application.
 1. Open your web browser and go to <https://localhost:5000>.
