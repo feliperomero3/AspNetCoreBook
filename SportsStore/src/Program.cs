@@ -30,8 +30,6 @@ public class Program
             scope.ServiceProvider.GetRequiredService<StoreDbContextInitializer>().Initialize();
         }
 
-        app.UseDeveloperExceptionPage();
-
         app.UseHttpsRedirection();
 
         app.UseStaticFiles();
