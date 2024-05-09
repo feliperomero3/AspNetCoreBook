@@ -15,6 +15,7 @@ NOTE: I'm using Razor Pages instead of MVC like in the book.
 ## Prerequisites
 
 - Visual Studio 2022
+- .NET SDK 6.0.300
 
 ## Getting started
 
